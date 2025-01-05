@@ -51,25 +51,33 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Card -->
     <section class="hero-section py-5 bg-light content">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <h2 class="text-center mb-4">Contact Us</h2>
-                    <form method="POST" action="/form">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+                    <!-- Bootstrap Card -->
+                    <div class="card shadow bg-light">
+                        <div class="card-body p-5">
+                            <h2 class="card-title text-center mb-4">Contact Us</h2>
+                            <form method="POST" action="/form">
+                                <!-- Name Input Field -->
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name" required>
+                                </div>
+                                <!-- Email Input Field -->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
                         </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
