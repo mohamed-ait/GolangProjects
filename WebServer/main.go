@@ -15,8 +15,21 @@ func helloHnadler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Method is not supported", http.StatusNotFound)
 		return
 	}
+	//write response within w :
 	fmt.Fprintf(w, "hello!")
 
+}
+
+func formHnadler(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		fmt.Fprintf(w, "ParseForm() err : %v", err)
+		return
+	}
+	fmt.Fprintf(w, "POST REQUEST SUCCESSFUL!")
+	name := r.FormValue("name")
+	email := r.FormValue("email")
+	fmt.Fprintf(w, "Name = %s\n", name)
+	fmt.Fprintf(w, "Email = %s\n", email)
 }
 func main() {
 	fileServer := http.FileServer(http.Dir("./static"))
