@@ -27,10 +27,25 @@ type Director struct {
 
 var movies []Movie
 
+// function to get all movies :
 func getMovies(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	json.NewEncoder(w).Encode(movies)
 }
+
+// function to delete a delete a movie :
+func deleteMovie(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-type", "application/json")
+	params := mux.Vars(r)
+
+	for index, item := range movies {
+		if item.ID == params["id"] {
+			movies = append(movies[:index], movies[index+1:]...)
+			break
+		}
+	}
+}
+
 func main() {
 	//router
 	r := mux.NewRouter()
