@@ -1,8 +1,10 @@
 package main
 
 import (
-	//"fmt"
-	//"log"
+	"fmt"
+	"log"
+	"net/http"
+
 	//"encoding/json"
 	//"math/rand"
 	//"net/http"
@@ -32,5 +34,8 @@ func main() {
 	r.HandleFunc("/movies", createMovie).Methods("POST")
 	r.HandleFunc("/movies/{id}", updateMovie).Methods("PUT")
 	r.HandleFunc("/movies/{id}", deleteMovie).Methods("DELETE")
+
+	fmt.Println("Starting Server at Port 8000")
+	log.Fatal(http.ListenAndServe(":8000", r))
 
 }
