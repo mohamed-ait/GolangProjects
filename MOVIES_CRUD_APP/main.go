@@ -62,12 +62,10 @@ func getMovie(w http.ResponseWriter, r *http.Request) {
 func createMovie(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	var movie Movie
-	err := json.NewDecoder(r.Body).Decode(&movie) // Pass the address of movie
+	_ = json.NewDecoder(r.Body).Decode(&movie) // Pass the address of movie
 	movie.ID = strconv.Itoa(rand.Intn(10000000))
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
+	movies = append(movies, movie)
+	json.NewEncoder(w).Encode(movie)
 
 }
 
