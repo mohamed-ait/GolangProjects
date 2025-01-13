@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"strconv"
 
+	"GolangProjects/BOOKSTORE/pkg/utils"
+
 	"github.com/gorilla/mux"
 )
 
@@ -30,6 +32,15 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 	bookDetails, _ := models.GetBookById(ID)
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(res)
+}
+
+func CreateBook(w http.ResponseWriter, r *http.Request) {
+	newBook := &models.Book{}
+	utils.ParseBody(r, newBook) //parse to database format
+	b := newBook.CreateBook()
+	res, _ := json.Marshal(b)
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
 }
