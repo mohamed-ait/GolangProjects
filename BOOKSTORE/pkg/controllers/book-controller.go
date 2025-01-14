@@ -79,7 +79,11 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	if updateBook.Publication != "" {
 		bookDetails.Publication = updateBook.Publication
 	}
-	db.Save(&bookDetails)
+	// Save the updated book details to the database
+	if err := db.Save(&bookDetails).Error; err != nil {
+		http.Error(w, "Failed to update book", http.StatusInternalServerError)
+		return
+	}
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(http.StatusOK)
