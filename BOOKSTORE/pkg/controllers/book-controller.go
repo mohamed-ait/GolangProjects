@@ -24,8 +24,8 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 
 func GetBookById(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	BookId := vars["bookId"]
-	ID, err := strconv.ParseInt(BookId, 0, 0)
+	BId := vars["bookId"]
+	ID, err := strconv.ParseInt(BId, 0, 0)
 	if err != nil {
 		fmt.Println("Error while parsing !")
 	}
